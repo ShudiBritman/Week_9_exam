@@ -1,12 +1,27 @@
 from typing import List, Dict, Any
+from db import get_db_connection
+import json
 
 def get_customers_by_credit_limit_range():
     """Return customers with credit limits outside the normal range."""
-    pass
+    cnx = get_db_connection()
+    cursor = cnx.cursor()
+    cursor.execute(
+    "select customername, creditlimit from customers where creditlimit < 10000 or creditlimit > 100000")
+    result = cursor.fetchall()
+    cursor.close()
+    cnx.close()
+    json_data = json.dumps(result)
+    return json_data
 
 def get_orders_with_null_comments():
     """Return orders that have null comments."""
-    pass
+    cnx = get_db_connection()
+    cursor = cnx.cursor()
+    cursor.execute("select ordernumber, orderdate, comments from orders where comments is null order by orderdate desc")
+    result = cursor.fetchall()
+    json_data = json.dumps(result)
+    return json_data
 
 def get_first_5_customers():
     """Return the first 5 customers."""
