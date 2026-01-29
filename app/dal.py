@@ -44,7 +44,13 @@ def get_payments_total_and_average():
 
 def get_employees_with_office_phone():
     """Return employees with their office phone numbers."""
-    pass
+    cnx = get_db_connection()
+    cursor = cnx.cursor()
+    cursor.execute("select e.firstname, e.lastname, o.phone ofiicePhone from employees e join offices o on o.officecode = e.officecode")
+    result = cursor.fetchall()
+    json_data = json.dumps(result)
+    return json_data
+
 
 def get_customers_with_shipping_dates():
     """Return customers with their order shipping dates."""
