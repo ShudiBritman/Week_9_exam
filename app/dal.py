@@ -72,4 +72,17 @@ def get_customer_quantity_per_order():
 
 def get_customers_payments_by_lastname_pattern(pattern: str = "son"):
     """Return customers and payments for last names matching pattern."""
-    pass
+    cnx = get_db_connection()
+    cursor = cnx.cursor()
+    cursor.execute('''select c.customername, concat(e.firstname, " ", e.lastname) salesemployee, sum(p.amount) amount
+                    from customers c
+                    join employees e on
+                    c.salesrepemployeenumber = e.employeenumber
+                    join payments p on 
+                    c.customernumber = p.customernumber
+                    where c.contactfirstname in ('%ly%', '%Mu%')
+                    group by c.customername, concat(e.firstname, " ", e.lastname)
+                    order by amount desc''')
+    result = cursor.fetchall()
+    json_data = json.dumps(result)
+    return json_data
