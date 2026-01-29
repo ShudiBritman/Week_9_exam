@@ -54,7 +54,12 @@ def get_employees_with_office_phone():
 
 def get_customers_with_shipping_dates():
     """Return customers with their order shipping dates."""
-    pass
+    cnx = get_db_connection()
+    cursor = cnx.cursor()
+    cursor.execute("select c.customername, o.orderdate from customers c left join orders o on o.customernumber = o.customernumber")
+    result = cursor.fetchall()
+    json_data = json.dumps(result)
+    return json_data
 
 def get_customer_quantity_per_order():
     """Return customer name and quantity for each order."""

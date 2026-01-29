@@ -33,7 +33,7 @@ def employees_office_phone():
 
 @app.get("/q6/customers-shipping-dates")
 def customers_shipping_dates():
-    pass
+    return get_customers_with_shipping_dates()
 
 @app.get("/q7/customer-quantity-per-order")
 def customer_quantity_per_order():
