@@ -21,15 +21,15 @@ def orders_null_comments():
 
 @app.get("/q3/customers-first-5")
 def customers_first_5():
-    pass
+    return get_first_5_customers()
 
 @app.get("/q4/payments-total-average")
 def payments_total_average():
-    pass
+    return get_payments_total_and_average()
 
 @app.get("/q5/employees-office-phone")
 def employees_office_phone():
-    pass
+    return get_employees_with_office_phone()
 
 @app.get("/q6/customers-shipping-dates")
 def customers_shipping_dates():
@@ -37,8 +37,8 @@ def customers_shipping_dates():
 
 @app.get("/q7/customer-quantity-per-order")
 def customer_quantity_per_order():
-    pass
+    return get_customer_quantity_per_order()
 
 @app.get("/q8/customers-payments-by-lastname-pattern")
 def customers_payments_by_lastname_pattern(pattern: str = "son"):
-    pass
+    return get_customers_payments_by_lastname_pattern()
