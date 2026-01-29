@@ -5,15 +5,13 @@ import json
 def get_customers_by_credit_limit_range():
     """Return customers with credit limits outside the normal range."""
     cnx = get_db_connection()
-    cursor = cnx.cursor()
+    cursor = cnx.cursor(dictionary=True)
     cursor.execute(
     "select customername, creditlimit from customers where creditlimit < 10000 or creditlimit > 100000")
-    r = [dict((cursor.description[i][0], value) \
-               for i, value in enumerate(row)) for row in cursor.fetchall()]
-    json_data = json.dumps(r)
+    result = cursor.fetchall()
     cnx.close()
     cursor.close()
-    return json_data
+    return result
 
 def get_orders_with_null_comments():
     """Return orders that have null comments."""
