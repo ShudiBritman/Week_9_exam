@@ -19,6 +19,12 @@ spec:
         ports:
         - containerPort: 3306
           name: db
+        env:
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        - name: MYSQL_DATABASE
+          value: weapons
+
         volumeMounts:
         - name: db
           mountPath: /var/lib/mysql

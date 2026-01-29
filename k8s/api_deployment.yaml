@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: sdbr1234/api-to-sql:latest
+        image: sdbr1234/api-to-sql:1.0
         ports:
         - containerPort: 8000
 
