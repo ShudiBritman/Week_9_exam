@@ -7,10 +7,7 @@ def get_customers_by_credit_limit_range():
     cnx = get_db_connection()
     cursor = cnx.cursor()
     cursor.execute(
-    '''select customername, creditlimit
-    from customers
-    where creditlimit < 10000 or creditlimit > 100000
-    ''')
+    "select customername, creditlimit from customers where creditlimit < 10000 or creditlimit > 100000")
     result = cursor.fetchall()
     cursor.close()
     cnx.close()
