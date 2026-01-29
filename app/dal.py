@@ -34,7 +34,13 @@ def get_first_5_customers():
 
 def get_payments_total_and_average():
     """Return total and average payment amounts."""
-    pass
+    cnx = get_db_connection()
+    cursor = cnx.cursor()
+    cursor.execute("select sum(amount), min(amount), max(amount), avg(amount) from payments")
+    result = cursor.fetchall()
+    json_data = json.dumps(result)
+    return json_data
+
 
 def get_employees_with_office_phone():
     """Return employees with their office phone numbers."""
